@@ -9,19 +9,21 @@ function createCard(item, deleteCard) {
 
     cardTitle.textContent = item.name;
     cardImage.src = item.link;
+    cardImage.alt = item.name;
 
     const deleteButton = card.querySelector('.card__delete-button');
 
     deleteButton.addEventListener('click', deleteCard);
-        function deleteCard(event) {
-            event.target.closest('.card').remove();
-        }
 
     return card;
 }
 
+function deleteCard(event) {
+    event.target.closest('.card').remove();
+}
+
 initialCards.forEach((item) => {
-    container.append(createCard(item));
+    container.append(createCard(item, deleteCard));
 });
 
 // @todo: DOM узлы  
