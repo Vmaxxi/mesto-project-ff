@@ -13,7 +13,7 @@ function createCard(item, deleteCard, openImageElement, likeCardButton ) {
     cardImage.src = item.link;
     cardImage.alt = item.name;
 
-    cardImage.addEventListener('click', () => openImageElement(cardImage.src, cardTitle.textContent));
+    cardImage.addEventListener('click', () => openImageElement(item.link, item.name));
     deleteButton.addEventListener('click', deleteCard);
     likeButton.addEventListener('click', likeCardButton);
    
@@ -21,7 +21,6 @@ function createCard(item, deleteCard, openImageElement, likeCardButton ) {
 }
 
 function likeCardButton(event) {
-  event.target.classList.contains('.card__like-button')
   event.target.classList.toggle('card__like-button_is-active');
 }
 

@@ -19,12 +19,12 @@ const popupAddClose = popupAdd.querySelector('.popup__close');
 const popupImageClose = popupImage.querySelector('.popup__close');
 const openImage = document.querySelector('.popup__image')
 // Формы
-const formElement  = popupEdit.querySelector('.popup__form');
-const nameInput = formElement .querySelector('.popup__input_type_name');
-const jobInput = formElement .querySelector('.popup__input_type_description');
-const formPopup = document.forms['new-place'];
-const placeNameInput = formPopup.elements['place-name'];
-const placelinkInput = formPopup.elements['link'];
+const formProfile  = popupEdit.querySelector('.popup__form');
+const nameInput = formProfile .querySelector('.popup__input_type_name');
+const jobInput = formProfile .querySelector('.popup__input_type_description');
+const formNewCard = document.forms['new-place'];
+const placeNameInput = formNewCard.elements['place-name'];
+const placelinkInput = formNewCard.elements['link'];
 // Профиль
 const profileTitle = profile.querySelector('.profile__title');
 const profileDescription = profile.querySelector('.profile__description');
@@ -33,7 +33,7 @@ const profileDescription = profile.querySelector('.profile__description');
 function openImageElement(imageSrc, imageName){
   openImage.src = imageSrc
   openImage.name = imageName
-
+  openImage.alt = imageName
   openPopup(popupImage)
 };
 
@@ -49,7 +49,7 @@ popupImageClose.addEventListener('click', () => {
   });
 
  // Обработчик «отправки» формы
-function handleFormSubmit(evt) {
+function handleEditProfile(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Получите значение полей jobInput и nameInput из свойства value
   profileTitle.textContent = nameInput.value
@@ -59,7 +59,7 @@ function handleFormSubmit(evt) {
 }
 
 // Прикрепляем обработчик к форме:
-formElement.addEventListener('submit', handleFormSubmit); 
+formProfile.addEventListener('submit', handleEditProfile); 
 
   popupEditClose.addEventListener('click', () => {
     closePopup(popupEdit);
@@ -76,15 +76,15 @@ formElement.addEventListener('submit', handleFormSubmit);
   })
 
   //плавность открытия модальных окон
-  document.addEventListener('DOMContentLoaded', () => {
-    const animatedPopup = document.querySelectorAll('.popup');
-    animatedPopup.forEach(popup => {
-        popup.classList.add('popup_is-animated');
-    });
+  
+  const animatedPopup = document.querySelectorAll('.popup');
+  animatedPopup.forEach(popup => {
+      popup.classList.add('popup_is-animated');
   });
 
+
   // добавление карточк вручную 
-  function handleCardFormSubmit(evt) {
+  function handleAddCard(evt) {
     evt.preventDefault();
 
     const nameCardValue = placeNameInput.value;
@@ -93,15 +93,14 @@ formElement.addEventListener('submit', handleFormSubmit);
     const newCard = createCard({
         name: nameCardValue,
         link: linkCardValue,
-        alt: nameCardValue
     },  deleteCard, openImageElement, likeCardButton );
 
     container.prepend(newCard);
 
     closePopup(popupAdd);
-    formPopup.reset();
+    formNewCard.reset();
 }
-formPopup.addEventListener('submit', handleCardFormSubmit);
+formNewCard.addEventListener('submit', handleAddCard);
   
 initialCards.forEach((item) => {
   container.append(createCard(item, deleteCard, openImageElement, likeCardButton));
