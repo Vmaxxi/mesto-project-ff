@@ -9,6 +9,35 @@
   margin: 0 29px 0 0;
 }
 
+.profile__image::after {
+  content: "";
+  display: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  width: 100%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.profile__image::before {
+  position: absolute;
+  top: calc(50% - 26px / 2);
+  left: 5%;
+  content: url("/src/images/Vector-avatar.svg");
+  width: 26px;
+  height: 26px;
+  display: none;
+}
+
+.profile__image:hover::after {
+  display: block;
+}
+
+.profile__image:hover::before {
+  display: block;
+}
+
 @media screen and (max-width: 740px) {
   .profile__image {
     margin: 0 10px 0 0;
