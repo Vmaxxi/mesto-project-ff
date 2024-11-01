@@ -1,13 +1,6 @@
 
-    const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'  
-};
-
+ import { validationConfig } from "./config";
+    
 //Показываем ошибку
 const showInputError = (formElement, inputElement, errorMessage, validationConfig) => {
     const formError = formElement.querySelector(`.${inputElement.id}-error`);
@@ -84,12 +77,5 @@ const clearValidation = (formElement, validationConfig) => {
 
      export {
     clearValidation,
-    enableValidation,
-    showInputError,
-    hideInputError,
-    isValid,
-    invalidInput,
-    toggleButton,
-    setEventListeners,
-    validationConfig
+    enableValidation
   };

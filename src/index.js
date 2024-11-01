@@ -5,8 +5,7 @@ import { openPopup,closePopup } from './scripts/modal.js';
 import {deleteCardClick, createCard, likeChangeClick  } from './scripts/card.js';
 import {
   clearValidation,
-  enableValidation,
-  validationConfig
+  enableValidation
  } from './scripts/validation.js';
  import { getUser,
   getCard,
@@ -14,6 +13,7 @@ import {
   addNewCard,
   deletedCardServer,
   avatarEdit } from './scripts/api.js';
+  import { validationConfig } from './scripts/config.js';
 
  let userId = null;
 
@@ -55,6 +55,7 @@ const popupAvatarForm = document.querySelector(
   '.popup_type_avatar_edit .popup__form[name="edit-avatar"]'
 );
 const popupAvatarUrl = document.querySelector(".popup__input_type_avatar_url");
+
 
 Promise.all([getCard(), getUser()]) //+
 .then(([cards, userData]) => {
@@ -211,3 +212,7 @@ const handelAvatarForm = (evt) => {
 }
 
 popupAvatarForm.addEventListener('submit', handelAvatarForm);
+
+enableValidation(validationConfig);
+
+export {validationConfig};
